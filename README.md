@@ -1,4 +1,4 @@
-# COVID-19 Corona Tracker
+# Corona Tracker (Covid-19)
 > An app that tracks covid-19 data 
 
 ## Usage 
