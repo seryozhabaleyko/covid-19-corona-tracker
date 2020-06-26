@@ -1,0 +1,74 @@
+.table td span {
+  display: inline-block;
+  height: .6rem;
+  width: .6rem;
+  border-radius: 50%;
+  margin-right: .5rem;
+}
+
+.table td .cases {
+  background-color: #f7bd45;
+}
+
+.table td .recovered {
+  background-color: #64b96e;
+}
+
+.table td .deaths {
+  background-color: #e94e62;
+}
+
+.table {
+  --bs-table-bg: transparent;
+  --bs-table-accent-bg: transparent;
+  --bs-table-striped-color: #212529;
+  --bs-table-striped-bg: rgba(0, 0, 0, 0.05);
+  --bs-table-active-color: #212529;
+  --bs-table-active-bg: rgba(0, 0, 0, 0.1);
+  --bs-table-hover-color: #212529;
+  --bs-table-hover-bg: rgba(0, 0, 0, 0.075);
+
+  margin-bottom: 1rem;
+  color: #212529;
+  vertical-align: top;
+  border-collapse: collapse;
+  width: 100%;
+
+  > thead {
+    background: #eeeaf6;
+    transition: background 0.3s ease 0s;
+  }
+
+  > tbody {
+
+  }
+
+  tr {
+    border-bottom: 1px solid #eeeaf6;
+    transition: background 0.3s ease 0s, border-color 0.3s ease 0s;
+
+    &:last-child {
+      border-bottom: 0;
+    }
+
+    &:hover {
+      background: #eeeaf6;
+    }
+  }
+
+  th, td {
+    text-align: left;
+    padding: 1.3rem 1rem;
+    line-height: 1.5;
+  }
+
+  th {
+
+  }
+
+  td {
+    color: #293f73;
+    font-size: 18px;
+    font-weight: 700;
+  }
+}
