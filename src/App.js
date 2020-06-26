@@ -16,7 +16,7 @@ function App() {
             <header>
                 <Navbar/>
             </header>
-            <main>
+            <main className="main">
                 <World/>
                 <div className="container">
                     <Countries/>
