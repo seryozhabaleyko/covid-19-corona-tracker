@@ -1,8 +1,18 @@
 .navbar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+
   height: 65px;
 
   display: flex;
   align-items: center;
 
+  -webkit-box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.05);
   box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.05);
+
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
 }
