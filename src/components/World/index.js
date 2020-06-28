@@ -12,7 +12,7 @@ import './World.scss';
 
 function World() {
 
-    const [{ isLoading, data, errorMessage }] = useFetch('/all');
+    const { isLoading, data, errorMessage } = useFetch('/all');
 
     if (isLoading) {
         return (
