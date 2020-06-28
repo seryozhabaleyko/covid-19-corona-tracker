@@ -3,12 +3,15 @@ import ReactDOM from 'react-dom';
 
 import * as serviceWorker from './serviceWorker';
 import App from './App';
+import ErrorBoundary from './components/ErrorBoundary';
 
 import './index.scss';
 
 ReactDOM.render(
     <React.StrictMode>
-        <App/>
+        <ErrorBoundary>
+            <App/>
+        </ErrorBoundary>
     </React.StrictMode>,
     document.getElementById('root'),
 );
