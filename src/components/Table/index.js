@@ -1,46 +1,13 @@
 import React, { useState } from 'react';
-import { Avatar, Menu, Popover, Position, Table, Text, TextDropdownButton } from 'evergreen-ui';
+import { Avatar, Table, Text, TextDropdownButton } from 'evergreen-ui';
 
-const Order = { NONE: 'NONE', ASC: 'ASC', DESC: 'DESC' };
+import useSortableData from '../../hooks/useSortableData';
+import { order } from '../../constants';
 
-const { BOTTOM_RIGHT } = Position;
-
-const MenuOptionsGroup = [
-    { label: 'Ascending', value: Order.ASC },
-    { label: 'Descending', value: Order.DESC },
-];
-
-const tableHeadCell = [
-    { label: 'Cases', column: 2 },
-    { label: 'Deaths', column: 3 },
-    { label: 'Recovered', column: 4 },
-    { label: 'Active', column: 5 },
-    { label: 'Tests', column: 6 },
-    { label: 'Population', column: 7 },
-];
+const tableHeadColumn = ['Cases', 'Deaths', 'Recovered', 'Active', 'Tests', 'Population'];
 
 function AdvancedTable({ countries }) {
     const [searchQuery, setSearchQuery] = useState('');
-    const [ordering, setOrdering] = useState(Order.NONE);
-    const [orderedColumn, setOrderedColumn] = useState(1);
-
-    const sort = (countries) => {
-        if (ordering === Order.NONE) return countries;
-
-        const currentPropKey = tableHeadCell.filter(({ label, column: currentColumn }) => currentColumn === orderedColumn);
-        const propKey = currentPropKey[0].label.toLowerCase() || 'country';
-
-        switch (ordering) {
-            case Order.NONE:
-                return countries.sort((a, b) => a.country < b.country ? -1 : 1);
-            case Order.ASC:
-                return countries.sort((a, b) => b[propKey] - a[propKey]);
-            case Order.DESC:
-                return countries.sort((a, b) => a[propKey] - b[propKey]);
-            default:
-                return countries;
-        }
-    };
 
     const filter = (countries) => {
         const searchQueryTrim = searchQuery.trim();
@@ -51,20 +18,27 @@ function AdvancedTable({ countries }) {
             country.toLowerCase().includes(searchQueryTrim.toLowerCase()));
     };
 
-    const getIconForOrder = (order) => {
-        switch (order) {
-            case Order.ASC:
+    const { items, requestSort, sortConfig } = useSortableData(filter(countries));
+
+    const getIconForOrder = (currentOrder) => {
+        switch (currentOrder) {
+            case order.asc:
                 return 'arrow-up';
-            case Order.DESC:
+            case order.desc:
                 return 'arrow-down';
             default:
-                return 'caret-down';
+                return 'double-caret-vertical';
         }
     };
 
     const handleFilterChange = (value) => setSearchQuery(value);
 
-    const items = filter(sort(countries));
+    const getClassNamesFor = (name) => {
+        if (!sortConfig) {
+            return;
+        }
+        return sortConfig.key === name ? sortConfig.direction : undefined;
+    };
 
     return (
         <Table border>
@@ -74,44 +48,18 @@ function AdvancedTable({ countries }) {
                     onChange={handleFilterChange}
                     placeholder='Search by country...'
                 />
-                {tableHeadCell.map(({ label, column: currentColumn }) => (
-                    <Table.TextHeaderCell key={currentColumn}>
-                        <Popover
-                            position={BOTTOM_RIGHT}
-                            content={({ close }) => (
-                                <Menu>
-                                    <Menu.OptionsGroup
-                                        title="Order"
-                                        options={MenuOptionsGroup}
-                                        selected={
-                                            orderedColumn === currentColumn
-                                                ? ordering
-                                                : null
-                                        }
-                                        onChange={value => {
-                                            setOrderedColumn(currentColumn);
-                                            setOrdering(value);
-                                            // Close the popover when you select a value.
-                                            close();
-                                        }}
-                                    />
-                                </Menu>
-                            )}
+                {tableHeadColumn.map((column) => (
+                    <Table.TextHeaderCell key={column}>
+                        <TextDropdownButton
+                            icon={getIconForOrder(getClassNamesFor(column.toLowerCase()))}
+                            onClick={() => requestSort(column.toLowerCase())}
                         >
-                            <TextDropdownButton
-                                icon={
-                                    orderedColumn === currentColumn
-                                        ? getIconForOrder(ordering)
-                                        : 'caret-down'
-                                }
-                            >
-                                {label}
-                            </TextDropdownButton>
-                        </Popover>
+                            {column}
+                        </TextDropdownButton>
                     </Table.TextHeaderCell>
                 ))}
             </Table.Head>
-            <Table.VirtualBody height={400}>
+            <Table.VirtualBody height={430}>
                 {items.map(({ country, countryInfo, cases, deaths, recovered, active, tests, population }) => (
                     <Table.Row key={country} isSelectable onSelect={() => alert(country)}>
                         <Table.Cell display="flex" alignItems="center">

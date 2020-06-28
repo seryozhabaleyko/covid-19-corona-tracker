@@ -36,7 +36,6 @@ function Countries() {
         <>
             <div style={{ height: '100px' }}/>
             <Table countries={data}/>
-            <div style={{ height: '100px' }}/>
             {/*<section className="countries">
                 <header className="countries-heading">
                     <h1>Countries</h1>

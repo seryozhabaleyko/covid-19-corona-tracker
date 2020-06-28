@@ -65,6 +65,11 @@ a:not([href]):not([class]), a:not([href]):not([class]):hover {
   text-decoration: none;
 }
 
+img {
+  width: 100%;
+  height: auto;
+}
+
 table {
   caption-side: bottom;
   border-collapse: collapse;
