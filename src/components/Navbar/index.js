@@ -1,12 +1,13 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 import Logo from '../Logo';
 
 import './Navbar.scss';
-import { NavLink } from 'react-router-dom';
 
 const nav = [
-    { label: 'Tracker', to: '/', exact: true },
+    { label: 'World', to: '/', exact: true },
+    { label: 'Countries', to: '/countries', exact: false },
     { label: 'Symptoms', to: '/symptoms', exact: false },
     { label: 'Prevention', to: '/prevention', exact: false },
 ];
