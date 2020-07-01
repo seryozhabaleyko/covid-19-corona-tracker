@@ -1,39 +1,35 @@
 import React from 'react';
 import { format, formatDistanceToNow } from 'date-fns';
 
+import s from './country.module.scss';
 import Cards from '../Cards';
-import useFetch from '../../hooks/useFetch';
+import Card from '../Card';
 
-import './Country.scss';
-
-function Country() {
-    const [{ isLoading, data, errorMessage }, handleRequest] = useFetch('/countries/belarus');
-
-    if (isLoading) {
-        return <p>Loading...</p>;
-    }
-
-    if (errorMessage) {
-        return <p>{errorMessage}</p>;
-    }
+function Country({ country, population, cases, todayCases, deaths, todayDeaths, recovered, todayRecovered, active, tests, updated }) {
 
     return (
-        <div className="countries">
-            <div className="countries-heading">
-                <h1>Countries</h1>
-                {data?.updated && (
+        <div className={s.country}>
+            <div className={s.heading}>
+                <h1 className={s.title}>{country} <span>{population?.toLocaleString()}</span></h1>
+                {updated && (
                     <div>
                         Last update:{' '}
-                        <span>{format(new Date(data?.updated), 'MM/dd/yyyy @ hh:mma')}</span>{' '}
-                        <span>({formatDistanceToNow(new Date(data?.updated))})</span>
+                        <span>{format(new Date(updated), 'MM/dd/yyyy @ hh:mma')}</span>{' '}
+                        <span>({formatDistanceToNow(new Date(updated))})</span>
                     </div>
                 )}
             </div>
-            <div>
-                <img src={data?.countryInfo?.flag} alt={data?.country}/>
-            </div>
-            <Cards data={data}/>
-            <button onClick={() => handleRequest('/countries/russia')}>Countries</button>
+            <Cards>
+                <Card title="Cases" value={cases}/>
+                <Card title="Deaths" value={deaths}/>
+                <Card title="Recovered" value={recovered}/>
+                <Card title="Active" value={active}/>
+
+                <Card title="Cases Today" value={todayCases}/>
+                <Card title="Deaths Today" value={todayDeaths}/>
+                <Card title="Recovered Today" value={todayRecovered}/>
+                <Card title="Tests" value={tests}/>
+            </Cards>
         </div>
     );
 }
