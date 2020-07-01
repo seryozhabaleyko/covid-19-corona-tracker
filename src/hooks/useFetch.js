@@ -12,7 +12,7 @@ const initialState = {
     errorMessage: null,
 };
 
-function apiReducer(state, { type, payload }) {
+function reducer(state, { type, payload }) {
     switch (type) {
         case DATA_FETCH_REQUEST:
             return { ...state, isLoading: true, errorMessage: null };
@@ -31,7 +31,7 @@ const fetchDataFailure = (errorMessage = defaultErrorMessage) =>
     ({ type: DATA_FETCH_FAILURE, payload: errorMessage });
 
 function useFetch(url) {
-    const [data, dispatch] = useReducer(apiReducer, initialState);
+    const [state, dispatch] = useReducer(reducer, initialState);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -48,7 +48,7 @@ function useFetch(url) {
         fetchData();
     }, [url]);
 
-    return data;
+    return state;
 }
 
 export default useFetch;
