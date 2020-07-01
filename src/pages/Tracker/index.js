@@ -1,7 +1,7 @@
 import React from 'react';
 
-import World from '../../components/World';
-import Countries from '../../components/Countries';
+import World from '../World';
+import Countries from '../Countries';
 
 import './Tracker.scss';
 
