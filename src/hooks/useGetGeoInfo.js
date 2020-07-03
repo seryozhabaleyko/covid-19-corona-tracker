@@ -33,7 +33,7 @@ function useGetGeoInfo() {
     const [state, dispatch] = useReducer(reducer, initialState);
 
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchData2 = async () => {
             dispatch(request());
             try {
                 const response = await axios.get('https://ipapi.co/json/');
@@ -42,7 +42,7 @@ function useGetGeoInfo() {
                 dispatch(failure(error.response.data));
             }
         };
-        fetchData();
+        fetchData2();
     }, []);
 
     return state;
