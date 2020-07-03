@@ -1,0 +1,23 @@
+.world {
+  background-image: url(http://tf.themedraft.com/wp/korisna/wp-content/uploads/2020/04/corona-data.png);
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+}
+
+.heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin: 0 0 1rem 0;
+}
+
+.title {
+  margin: 0;
+  color: #293f73;
+}
+
+.cover {
+  margin: 50px 0;
+  text-align: center;
+}
