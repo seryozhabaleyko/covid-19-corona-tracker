@@ -9,6 +9,8 @@
 - Gives us interactive looks with chart. We used **Chart.js** for interactive chart design. 
 - We can select countries and see the statistics of that country.
 
+![](https://github.com/seryozhabaleyko/covid-19-corona-tracker/blob/master/dsefwfefwefBuffer.jpg?raw=true)
+
 ## Available Scripts
 
 In the project directory, you can run:
