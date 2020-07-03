@@ -1,32 +1,36 @@
 import React from 'react';
+import useFetch from 'use-http';
+import { Alert, Pane, Spinner } from 'evergreen-ui';
 
 import Country from '../components/Country';
-import useGetGeoInfo from '../hooks/useGetGeoInfo';
 
 function CountryContainer({ countries }) {
 
-    const { isLoading, data, errorMessage } = useGetGeoInfo();
+    const { loading, data, error } = useFetch('https://ipapi.co/json/', []);
 
-    if (isLoading) {
+    if (loading) {
         return (
-            <p>Loading...</p>
+            <Pane
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+                height={400}
+            >
+                <Spinner/>
+            </Pane>
         );
     }
 
-    if (errorMessage) {
-        return (
-            <p>Error: {errorMessage}</p>
-        );
+    if (error) {
+        return <Alert intent="danger" title={error}/>;
     }
+
+    const currentCountryName = data?.country_name?.toLowerCase();
 
     const country = countries.filter(({ country }) =>
-        country.toLowerCase() === data?.country_name?.toLowerCase());
+        country.toLowerCase() === currentCountryName);
 
-    console.log(country[0]);
-
-    return (
-        <Country {...country[0]} />
-    );
+    return <Country {...country[0]} countryName={currentCountryName}/>;
 }
 
 export default CountryContainer;
