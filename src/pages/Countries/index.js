@@ -1,17 +1,18 @@
 import React from 'react';
+import useFetch from 'use-http';
 import { Alert, Pane, Spinner } from 'evergreen-ui';
 
-import useFetch from '../../hooks/useFetch';
 import Table from '../../components/Table';
+import { baseUrl } from '../../utils/api';
+import CountryContainer from '../../containers/CountryContainer';
 
 import './Countries.scss';
-import CountryContainer from '../../containers/CountryContainer';
 
 function Countries() {
 
-    const { isLoading, data, errorMessage } = useFetch('/countries');
+    const { loading, data, error } = useFetch(`${baseUrl}/covid-19/countries`, []);
 
-    if (isLoading) {
+    if (loading) {
         return (
             <Pane
                 display="flex"
@@ -24,13 +25,8 @@ function Countries() {
         );
     }
 
-    if (errorMessage) {
-        return (
-            <Alert
-                intent="danger"
-                title={errorMessage}
-            />
-        );
+    if (error) {
+        return <Alert intent="danger" title={error}/>;
     }
 
     return (
@@ -38,12 +34,7 @@ function Countries() {
             <CountryContainer countries={data}/>
             <div style={{ height: '100px' }}/>
             <Table countries={data}/>
-
-            {/*<section className="countries">
-                <header className="countries-heading">
-                    <h1>Countries</h1>
-                </header>
-            </section>*/}
+            <div style={{ height: '100px' }}/>
         </div>
     );
 }
