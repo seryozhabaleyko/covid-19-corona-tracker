@@ -1,16 +1,26 @@
 import React from 'react';
 import { format, formatDistanceToNow } from 'date-fns';
 
-import s from './country.module.scss';
 import Cards from '../Cards';
 import Card from '../Card';
+import Chart from '../../pages/Countries/components/Chart';
 
-function Country({ country, population, cases, todayCases, deaths, todayDeaths, recovered, todayRecovered, active, tests, updated }) {
+import s from './country.module.scss';
+
+function Country({
+    country, population, cases, todayCases, deaths, todayDeaths,
+    recovered, todayRecovered, active, tests, updated, countryName,
+}) {
 
     return (
         <div className={s.country}>
             <div className={s.heading}>
-                <h1 className={s.title}>{country} <span>{population?.toLocaleString()}</span></h1>
+                <h1
+                    className={s.title}
+                >
+                    {country}{' '}
+                    <span>{population?.toLocaleString()}</span>
+                </h1>
                 {updated && (
                     <div>
                         Last update:{' '}
@@ -30,6 +40,8 @@ function Country({ country, population, cases, todayCases, deaths, todayDeaths, 
                 <Card title="Recovered Today" value={todayRecovered}/>
                 <Card title="Tests" value={tests}/>
             </Cards>
+            <div style={{ height: '100px' }}/>
+            <Chart country={countryName.toLowerCase()}/>
         </div>
     );
 }
