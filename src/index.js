@@ -10,7 +10,7 @@ import './index.scss';
 ReactDOM.render(
     <React.StrictMode>
         <ErrorBoundary>
-            <App />
+            <App/>
         </ErrorBoundary>
     </React.StrictMode>,
     document.getElementById('root'),
