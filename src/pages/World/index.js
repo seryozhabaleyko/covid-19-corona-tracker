@@ -1,20 +1,22 @@
 import React from 'react';
+import useFetch from 'use-http';
 import { Alert, Pane, Spinner } from 'evergreen-ui';
 import { format, formatDistanceToNow } from 'date-fns';
 
 import Cards from '../../components/Cards';
-import useFetch from '../../hooks/useFetch';
 import Card from '../../components/Card';
+import { baseUrl } from '../../utils/api';
 
 import map from '../../assets/images/corona-case-map.png';
 
-import './World.scss';
+import s from './world.module.scss';
+import Chart from './components/Chart';
 
 function World() {
 
-    const { isLoading, data, errorMessage } = useFetch('/all');
+    const { loading, data, error } = useFetch(`${baseUrl}/covid-19/all`, []);
 
-    if (isLoading) {
+    if (loading) {
         return (
             <Pane
                 display="flex"
@@ -27,20 +29,15 @@ function World() {
         );
     }
 
-    if (errorMessage) {
-        return (
-            <Alert
-                intent="danger"
-                title={errorMessage}
-            />
-        );
+    if (error) {
+        return <Alert intent="danger" title={error}/>;
     }
 
     return (
-        <section className="world">
+        <section className={s.world}>
             <div className="container">
-                <header className="world-heading">
-                    <h1>World</h1>
+                <header className={s.heading}>
+                    <h1 className={s.title}>World</h1>
                     {data?.updated && (
                         <div>
                             Last update:{' '}
@@ -60,9 +57,11 @@ function World() {
                     <Card title="Critical" value={data?.critical}/>
                     <Card title="Affected Countries" value={data?.affectedCountries}/>
                 </Cards>
-                <div className="world-cover">
+                <div className={s.cover}>
                     <img src={map} alt="map"/>
                 </div>
+                <Chart/>
+                <div style={{ height: '100px' }}/>
             </div>
         </section>
     );
