@@ -30,7 +30,7 @@ function CountryContainer({ countries }) {
     const country = countries.filter(({ country }) =>
         country.toLowerCase() === currentCountryName);
 
-    return <Country {...country[0]} countryName={currentCountryName}/>;
+    return <Country {...country[0]} countryName={currentCountryName ? undefined : "russia"}/>;
 }
 
 export default CountryContainer;
