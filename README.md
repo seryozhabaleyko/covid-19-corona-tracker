@@ -8,6 +8,8 @@
   Tracking the Spread of the Coronavirus (COVID-19) pandemic in the Belarus and Worldwide.
 </p>
 
+<img src="https://github.com/seryozhabaleyko/covid-19-corona-tracker/blob/master/dsefwfefwefBuffer.jpg?raw=true" />
+
 ## Usage 
 
 - A React app which shows us worldwide corona-virus statistics. 
@@ -15,8 +17,6 @@
 - Our app shows the infected, recovered and death numbers of COVID-19 worldwide. 
 - Gives us interactive looks with chart. We used **Chart.js** for interactive chart design. 
 - We can select countries and see the statistics of that country.
-
-![](https://github.com/seryozhabaleyko/covid-19-corona-tracker/blob/master/dsefwfefwefBuffer.jpg?raw=true)
 
 ## Available Scripts
 
