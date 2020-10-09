@@ -8,8 +8,8 @@
   Tracking the Spread of the Coronavirus (COVID-19) pandemic in the Belarus and Worldwide.
 </p>
 
-<br/>
-
-<h2>Скриншот</h2>
+<h2>Скриншоты</h2>
 
 <img src="https://github.com/seryozhabaleyko/covid-19-corona-tracker/blob/master/dsefwfefwefBuffer.jpg?raw=true" />
+<img src="https://github.com/seryozhabaleyko/covid-19-corona-tracker/blob/master/covid-19-symptoms.png?raw=true" />
+<img src="https://github.com/seryozhabaleyko/covid-19-corona-tracker/blob/master/covid-19-prevention.png?raw=true" />
