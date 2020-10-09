@@ -1,5 +1,10 @@
-# Corona Tracker (Covid-19)
-> An app that tracks covid-19 data 
+<div align="center">
+  <img src="https://www.eucope.org/wp-content/uploads/2020/04/covid19_1600800.png" />
+</div>
+
+<h1>Covid-19 Corona Tracker</h1>
+
+<p>An app that tracks covid-19 data </p>
 
 ## Usage 
 
