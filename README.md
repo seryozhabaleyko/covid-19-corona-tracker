@@ -10,6 +10,7 @@
 
 <h2>Скриншоты</h2>
 
-<img src="https://github.com/seryozhabaleyko/covid-19-corona-tracker/blob/master/dsefwfefwefBuffer.jpg?raw=true" />
+<img src="https://github.com/seryozhabaleyko/covid-19-corona-tracker/blob/master/covid-19-world.png?raw=true" />
+<img src="https://github.com/seryozhabaleyko/covid-19-corona-tracker/blob/master/covid-19-countries.png?raw=true" />
 <img src="https://github.com/seryozhabaleyko/covid-19-corona-tracker/blob/master/covid-19-symptoms.png?raw=true" />
 <img src="https://github.com/seryozhabaleyko/covid-19-corona-tracker/blob/master/covid-19-prevention.png?raw=true" />
