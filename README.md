@@ -4,7 +4,9 @@
 
 <h1 align="center">Covid-19 Corona Tracker</h1>
 
-<p align="center">An app that tracks covid-19 data </p>
+<p align="center">
+  Tracking the Spread of the Coronavirus (COVID-19) pandemic in the Belarus and Worldwide.
+</p>
 
 ## Usage 
 
